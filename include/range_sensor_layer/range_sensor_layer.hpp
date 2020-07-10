@@ -12,9 +12,6 @@
 #include <boost/function.hpp>
 #include <boost/thread/recursive_mutex.hpp>
 
-// TODO: functionality already included in ros2 ???
-//#include <dynamic_reconfigure/server.h>
-
 namespace range_sensor_layer
 {
 
@@ -39,8 +36,6 @@ namespace range_sensor_layer
 		virtual void activate();
 
 	private:
-		void reconfigureCB(range_sensor_layer::RangeSensorLayer& config);
-
 		void bufferIncomingRangeMsg(sensor_msgs::msg::Range::SharedPtr range_message);
 		void processRangeMsg(sensor_msgs::msg::Range& range_message);
 		void processFixedRangeMsg(sensor_msgs::msg::Range& range_message);
@@ -81,9 +76,6 @@ namespace range_sensor_layer
 		unsigned int buffered_readings_;
 		std::vector<rclcpp::Subscription<sensor_msgs::msg::Range>::SharedPtr> range_subs_;
 		double min_x_, min_y_, max_x_, max_y_;
-
-//      TODO: functionality already included in ros2 ???
-//		dynamic_reconfigure::Server<range_sensor_layer::RangeSensorLayer>* dsrv_;
 
 		float area(int x1, int y1, int x2, int y2, int x3, int y3)
 		{

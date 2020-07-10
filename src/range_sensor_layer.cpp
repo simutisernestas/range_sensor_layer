@@ -124,12 +124,6 @@ namespace range_sensor_layer
 			}
 		}
 
-//      TODO: functionality already included in ros2 ???
-//		dsrv_ = new dynamic_reconfigure::Server<range_sensor_layer::RangeSensorLayer>(nh);
-//		dynamic_reconfigure::Server<range_sensor_layer::RangeSensorLayer>::CallbackType cb =
-//			std::bind(&RangeSensorLayer::reconfigureCB, this, _1);
-//		dsrv_->setCallback(cb);
-
 		global_frame_ = layered_costmap_->getGlobalFrameID();
 	}
 
@@ -175,22 +169,6 @@ namespace range_sensor_layer
 		}
 		else
 			return 0.5;
-	}
-
-	void RangeSensorLayer::reconfigureCB(range_sensor_layer::RangeSensorLayer& config)
-	{
-		phi_v_ = config.phi_v_;
-		inflate_cone_ = config.inflate_cone_;
-		no_readings_timeout_ = config.no_readings_timeout_;
-		clear_threshold_ = config.clear_threshold_;
-		mark_threshold_ = config.mark_threshold_;
-		clear_on_max_reading_ = config.clear_on_max_reading_;
-
-		if (enabled_ != config.enabled_)
-		{
-			enabled_ = config.enabled_;
-			current_ = false;
-		}
 	}
 
 	void RangeSensorLayer::bufferIncomingRangeMsg(const sensor_msgs::msg::Range::SharedPtr range_message)
