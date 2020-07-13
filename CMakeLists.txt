@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(range_sensor_layer)
 
-# clion can't find RMW without these
-set(FastRTPS_INCLUDE_DIR /opt/ros/foxy/include)
-set(FastRTPS_LIBRARY_RELEASE /opt/ros/foxy/lib/libfastrtps.so)
-
 # Default to C99
 if (NOT CMAKE_C_STANDARD)
     set(CMAKE_C_STANDARD 99)
